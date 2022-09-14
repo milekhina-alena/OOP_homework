@@ -1,4 +1,5 @@
 class Student:
+
     def __init__(self, name, surname, gender):
         self.name = name
         self.surname = surname
@@ -33,7 +34,6 @@ class Student:
             return
         return self._Student__avg_score() < other._Student__avg_score()
 
-
     def __str__(self):
         return(f'''Имя: {self.name}
 Фамилия: {self.surname}
@@ -43,6 +43,7 @@ class Student:
 
 
 class Mentor:
+
     def __init__(self, name, surname):
         self.name = name
         self.surname = surname
@@ -50,6 +51,7 @@ class Mentor:
 
 
 class Lecturer(Mentor):
+
     def __init__(self, name, surname):
         super().__init__(name, surname)
         self.grades = {}
@@ -74,6 +76,7 @@ class Lecturer(Mentor):
 
 
 class Reviewer(Mentor):
+
     def rate_hw(self, student, course, grade):
         if (isinstance(student, Student) and course in self.courses_attached and 
         course in student.courses_in_progress or course in student.finished_courses):
@@ -181,6 +184,7 @@ print(worst_student._Student__avg_score())
 
 student_list = [best_student, worst_student]
 
+
 def avg_student_score(student, course):
     grade_list = []
     for student in student_list:
@@ -199,6 +203,7 @@ print(avg_student_score(student_list, 'Введение в программир�
 # print(worst_student.grades)
 
 lecturer_list = [some_lecturer, awesome_lecturer]
+
 
 def avg_lecturer_score(lecturer, course):
     grade_list = []
