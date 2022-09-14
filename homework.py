@@ -11,7 +11,8 @@ class Student:
         self.finished_courses.append(course_name)
 
     def rate_lecture(self, lecturer, course, grade):
-        if isinstance(lecturer, Lecturer) and course in lecturer.courses_attached and course in self.courses_in_progress or course in self.finished_courses:
+        if (isinstance(lecturer, Lecturer) and course in lecturer.courses_attached
+         and course in self.courses_in_progress or course in self.finished_courses):
             if course in lecturer.grades:
                 lecturer.grades[course] += [grade]
             else:
@@ -81,7 +82,8 @@ class Lecturer(Mentor):
 
 class Reviewer(Mentor):
     def rate_hw(self, student, course, grade):
-        if isinstance(student, Student) and course in self.courses_attached and course in student.courses_in_progress:
+        if (isinstance(student, Student) and course in self.courses_attached and 
+        course in student.courses_in_progress or course in student.finished_courses):
             if course in student.grades:
                 student.grades[course] += [grade]
             else:
@@ -172,8 +174,8 @@ worst_student.rate_lecture(awesome_lecturer, 'Git', 10)
 worst_student.rate_lecture(awesome_lecturer, 'Введение в программирование', 9)
 
 print(best_student.grades)
+print(some_lecturer._Lecturer__avg_score())
 print(some_lecturer.grades)
-# print(some_lecturer._Lecturer__avg_score())
 print(best_student)
 print(worst_student)
 print(best_student < worst_student)
@@ -182,5 +184,44 @@ print(some_lecturer)
 print(some_lecturer > awesome_lecturer)
 print(some_reviewer)
 print(bad_reviewer)
-# print(best_student._Student__avg_score())
-# print(worst_student._Student__avg_score())
+print(best_student._Student__avg_score())
+print(worst_student._Student__avg_score())
+
+
+student_list = [best_student, worst_student]
+
+def avg_student_score(student, course):
+    grade_list = []
+    for student in student_list:
+        if course in student.grades:
+            grade_list += student.grades[course]
+        else:
+            return 'Error'
+        result = sum(grade_list) / len(grade_list)
+    return result
+
+print(avg_student_score(student_list, 'Python'))
+print(avg_student_score(student_list, 'Git'))
+print(avg_student_score(student_list, 'Введение в программирование'))
+
+# print(best_student.grades)
+# print(worst_student.grades)
+
+lecturer_list = [some_lecturer, awesome_lecturer]
+
+def avg_lecturer_score(lecturer, course):
+    grade_list = []
+    for lecturer in lecturer_list:
+        if course in lecturer.grades:
+            grade_list += lecturer.grades[course]
+        else:
+            return 'Error'
+        result = sum(grade_list) / len(grade_list)
+    return result
+  
+print(avg_lecturer_score(lecturer_list, 'Python'))
+print(avg_lecturer_score(lecturer_list, 'Git'))
+print(avg_lecturer_score(lecturer_list, 'Введение в программирование'))
+
+# print(some_lecturer.grades)
+# print(awesome_lecturer.grades)
