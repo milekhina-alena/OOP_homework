@@ -24,9 +24,6 @@ class Student:
         grades_sum = []
         for grades in self.grades.values():
             grades_sum += grades
-        # print(grades_sum)
-        # print(sum(grades_sum))
-        # print(len(grades_sum))
         result = sum(grades_sum) / len(grades_sum)
         return result
 
@@ -36,7 +33,6 @@ class Student:
             return
         return self._Student__avg_score() < other._Student__avg_score()
 
-    # courses_in_progress = ", ".join(self.courses_in_progress)
 
     def __str__(self):
         return(f'''Имя: {self.name}
@@ -62,9 +58,6 @@ class Lecturer(Mentor):
         grades_sum = []
         for grades in self.grades.values():
             grades_sum += grades
-        # print(grades_sum)
-        # print(sum(grades_sum))
-        # print(len(grades_sum))
         result = sum(grades_sum) / len(grades_sum)
         return result
 
@@ -95,8 +88,6 @@ class Reviewer(Mentor):
         return(f'''Имя: {self.name}
 Фамилия: {self.surname}''')
 
-# print(Lecturer.mro())
-# print(Reviewer.mro())
 
 
 best_student = Student('Ruoy', 'Eman', 'your_gender')
